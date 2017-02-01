@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Raffle Demo</title>
+    <link type="text/css" href="raffle.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="raffle-container"></div>
+    <button class="raffle-play" id="raffle-play">Iniciar</button>
+
+    <script type="text/javascript" src="audio-player.js"></script>
+    <script type="text/javascript" src="raffle.js"></script>
+    <script type="text/javascript">
+    (function () {
+        /** list of random names
+            http://listofrandomnames.com/index.cfm */
+        var names = [
+            'Brant Bachelor', 'Caroyln Lockridge', 'Geraldo Stilson', 'Ashely Straub', 'Terry Schiffman',
+            'Junior Blouin', 'Toney Cheeseman', 'Ossie Picard', 'Claudie Robson', 'Huong Deyo',
+            'Princess Riding', 'Raul Arline', 'Rhona Temme', 'Gonzalo Feliz', 'Shanice Crim',
+            'Mickey Grote', 'Emely Logan', 'Azalee Ours', 'Vella Keegan', 'Demetria Trapp',
+            'Benito Wommack', 'Pauline Bensley', 'Porfirio Willaert', 'Everett Gorecki', 'Wenona Agnew',
+            'Daisy Flamm', 'Kristyn Sigel', 'Lourie Molyneux', 'Addie Neace', 'Mabel Claire'
+        ];
+
+        /** configure audio player */
+        audioPlayer.config({
+            files: {
+                ogg: 'raffle.ogg',
+                mp3: 'raffle.mp3'
+            },
+            volume: 0.5
+        });
+
+        /** configure raffle controller */
+        raffle.config({
+            names: names,
+            container: document.querySelector('.raffle-container'),
+            duration: 5.2,
+            itemDuration: .2,
+            removeSelected: true
+        });
+
+        /** button click listener to play audio and run raffle */
+        document.querySelector('button').addEventListener('click', function () {
+            var button = this;
+            button.className += ' disabled'; //.classList.add('disabled');
+            raffle.play({
+                start: function () {
+                    audioPlayer.play();
+                },
+                end: function () {
+                    button.className = button.className.replace('disabled', ''); //.classList.remove('disabled');
+                }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/** Raffle JS v1.0
+    Control to play a raffle based on a list of string values.
+    Israel Muñoz <israel.munoz.v@gmail.com>
+    https://github.com/israel-munoz/raffle-js
+
+    The control is based on CSS Animations to show the elements in a defined order.
+*/
+@keyframes name {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0); }
+}
+
+/* Animation for the last item displayed */
+@keyframes name-last {
+    0% { opacity: 0; transform: scale(0); }
+    20% { opacity: 1; transform: scale(1); }
+    30% { opacity: 1; }
+    35% { opacity: 0; }
+    40% { opacity: 1; }
+    50% { opacity: 1; }
+    55% { opacity: 0; }
+    60% { opacity: 1; }
+    70% { opacity: 1; }
+    75% { opacity: 0; }
+    80% { opacity: 1; }
+    90% { opacity: 1; }
+    95% { opacity: 0; }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+body {
+    font-family: 'segoe ui', calibri, sans-serif;
+}
+
+/* Element defined as "container" for the raffle control */
+.raffle-container {
+    border: solid 3px #5364b3;
+    border-radius: 15vw;
+    box-shadow: inset 0 0 8vw 3vw #5364b3;
+    height: 30vw;
+    font-size: 8vw;
+    position: relative;
+}
+
+/* Element inside the container. The animation-delay property is the one that will change for each one. */
+.raffle-container .name {
+    animation-name: name;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-fill-mode: none;
+    animation-timing-function: linear;
+    height: 100%;
+    left: 0;
+    line-height: 1.5em;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    transform-origin: 50% 50%;
+    transform: scale(0);
+    width: 100%;
+}
+
+/* Styles to align vertically the items to the center of the container */
+.raffle-container .name::before,
+.raffle-container .name span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.raffle-container .name::before {
+    content: '';
+    height: 100%;
+}
+
+/* Styles for the last item displayed */
+.raffle-container.animated .name.last {
+    animation-name: name-last;
+    animation-duration: 1s;
+}
+
+/* Styles for the last item displayed when the animation is running */
+.raffle-container.animated .name {
+    animation-play-state: running, paused;
+    animation-fill-mode: forwards;
+}
+
+/* Styles for the Play button */
+button.raffle-play {
+    background: #4cff00;
+    border: none;
+    border-radius: 50%;
+    box-shadow: inset -.3vw -.3vw 0 0 rgba(0, 0, 0, .3);
+    cursor: pointer;
+    display: block;
+    height: 8vw;
+    margin: 2vw auto;
+    overflow: hidden;
+    position: relative;
+    text-indent: -100vw;
+    width: 8vw;
+}
+
+button.raffle-play:focus {
+    outline: none;
+}
+
+button.raffle-play::before {
+    border: solid;
+    border-width: 2vw 3vw;
+    border-color: transparent transparent transparent #fff;
+    content: '';
+    display: block;
+    height: 0;
+    left: 35%;
+    position: absolute;
+    top: 26%;
+    width: 0;
+}
+
+/* Styles for the button when the animation is running */
+button.raffle-play.disabled {
+    background-color: #808080;
+}
+
+button.raffle-play.disabled::before {
+    content: none;
+}
