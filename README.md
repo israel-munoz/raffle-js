@@ -7,7 +7,10 @@ It uses pure JavaScript and CSS Animations to run.
 Any modern browser should support this control. I even tested in IE10, which is the first IE version to support CSS Animations, and it worked fine.
 The audio is in both OGG and MP4 format for browsers support.
 
-**Note:** The `audioPlayer` control is used for the demo only. It's not actually part of the Raffle controller, and can be replaced with any other audio controller. Anyway, you can use this `audioPlayer` for any purpose ;)
+##Notes
+The `audioPlayer` control is used for the demo only. It's not actually part of the Raffle controller, and can be replaced with any other audio controller. Anyway, you can use this `audioPlayer` for any purpose ;)
+
+I used [http://listofrandomnames.com/](http://listofrandomnames.com/) to obtain a random list of names, but only for the demo. They can be retrieved in any form, and just added to the Raffle configuration.
 
 ##Usage
 First, you have to initialize the controller:
