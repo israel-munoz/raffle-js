@@ -45,13 +45,13 @@
         /** button click listener to play audio and run raffle */
         document.querySelector('button').addEventListener('click', function () {
             var button = this;
-            button.className += ' disabled'; //.classList.add('disabled');
+            button.classList.add('disabled');
             raffle.play({
                 start: function () {
                     audioPlayer.play();
                 },
                 end: function () {
-                    button.className = button.className.replace('disabled', ''); //.classList.remove('disabled');
+                    button.classList.remove('disabled');
                 }
             });
         });

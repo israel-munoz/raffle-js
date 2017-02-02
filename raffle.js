@@ -24,7 +24,7 @@ window.raffle = (function () {
     var createName = function (n) {
         var name = document.createElement('div'),
             span = document.createElement('span');
-        name.className = 'name'; //name.classList.add('name');
+        name.classList.add('name');
         span.textContent = n;
         name.appendChild(span);
         container.appendChild(name);
@@ -57,13 +57,13 @@ window.raffle = (function () {
             delay = itemDuration * i + .5;
             createName(names[idx]).style.animationDelay = delay + 's';
         });
-        container.children[container.children.length - 1].className += ' last'; //classList.add('last');
+        container.children[container.children.length - 1].classList.add('last');
     };
 
     /** hides the displayed item in the container and moves forward to the next function, according to the animation delay.
         @params {Function} callback: following function after hiding the item selected in the previous raffle. */
     var clearContainer = function (callback) {
-        container.className = container.className.replace('animated', ''); //.classList.remove('animated');
+        container.classList.remove('animated');
         setTimeout(function () {
             container.innerHTML = '';
             callback();
@@ -109,7 +109,7 @@ window.raffle = (function () {
                     names.splice(last, 1);
                 }
                 init();
-                container.className += ' animated'; //.classList.add('animated');
+                container.classList.add('animated');
                 if (params.start) {
                     params.start();
                 }
